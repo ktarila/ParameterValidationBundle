@@ -42,7 +42,7 @@ class ParamValidationFieldsReader
                 );
 
                 if ($error->count() > 0) {
-                    $error->addAll($all_errors);
+                    $all_errors = $error->addAll($all_errors);
                 }
             }
         }
