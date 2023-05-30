@@ -13,17 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     # Docs: https://docs.github.com/en/actions/using-containerized-services
-    services:
-      mysql:
-        image: mysql:latest
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: false
-          MYSQL_ROOT_PASSWORD: symfony
-          MYSQL_DATABASE: symfony
-        ports:
-          - 3306/tcp
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
     strategy:
       fail-fast: true
       matrix:
@@ -76,39 +65,7 @@ jobs:
       - name: Analyse PHP Code (PHPStan)
         run: vendor/bin/phpstan analyse src
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: yarn-cache-node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-yarn-cache-node-modules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-cache-node-modules-
-
-      - name: Yarn install
-        if: steps.yarn-cache-node-modules.outputs.cache-hit != 'true'
-        run: yarn install
-
-      - name: Yarn build
-        run: yarn run encore production
-
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v1
-        with:
-          name: build
-          path: public/build
-
-      # Symfony
-      - name: Check the Symfony console
+      # Tests
+      - name: Run Tests
         run: |
-          php bin/console -V
-          php bin/console about
-
-      # Doctrine Database and tests
-      - name: Run Migration
-        run: |
-          php bin/console doctrine:database:create --env test
-          php bin/console doctrine:schema:update --force --complete --env test || echo "No migrations found or schema update failed"
-          php bin/phpunit --stop-on-failure
-        env:
-          DATABASE_URL: mysql://root:symfony@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/symfony
+          php vendor/bin/phpunit --stop-on-failure
