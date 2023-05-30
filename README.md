@@ -7,17 +7,28 @@ Validations are added as PHP8 attributes
 
 Work In Progress
 
+## Installation
+
+```
+composer require ktarila/ParameterValidationBundle
+
+```
+
 ## Usage
 
 ```
+<?php
+
+
 use ktarila\ParameterValidatorBundle\Annotation\ParamValidation;
-use ktarila\ParameterValidatorBundle\Annotation\ParamValidationFieldsReader;
 use Symfony\Component\Validator\Constraints\Range;
+use ktarila\ParameterValidatorBundle\Annotation\ParamValidationFieldsReaderInterface;
+use Symfony\Component\Validator\Exception\ValidationFailedException;
 
 class TestClass
 {
     public function __construct(
-        private ParamValidatorFieldsReader $paramValidatorFieldsReader
+        private ParamValidationFieldsReaderInterface $paramValidationFieldsReaderInterface
     ){}
 
 
@@ -37,8 +48,18 @@ class TestClass
     )]
     public function addTwoNumbers(int $x, int $y)
     {
-        return $this->paramValidationFieldsReader->validate(__METHOD__, func_get_args());
+        $errors = $this->paramValidationFieldsReaderInterface->validate(
+            __METHOD__,
+            func_get_args()
+        );
+
+        if ($errors->count() === 0) {
+            return $x + $y;
+        }
+
+        throw new ValidationFailedException([$x, $y], $errors);
     }
- }
+}
+
 
 ```

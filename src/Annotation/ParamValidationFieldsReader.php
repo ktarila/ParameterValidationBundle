@@ -6,7 +6,7 @@ use ReflectionMethod;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class ParamValidationFieldsReader
+class ParamValidationFieldsReader implements ParamValidationFieldsReaderInterface
 {
     public function __construct(private ValidatorInterface $validator)
     {
@@ -42,7 +42,7 @@ class ParamValidationFieldsReader
                 );
 
                 if ($error->count() > 0) {
-                    $all_errors = $error->addAll($all_errors);
+                    $all_errors->addAll($error);
                 }
             }
         }
