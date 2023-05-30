@@ -1,0 +1,30 @@
+{
+    "name": "ktarila/parameter-validator-bundle",
+    "description": "Validate Method Parameters using Symfony Validator",
+    "type": "symfony-bundle",
+    "require": {
+        "php": ">= 8.0",
+        "symfony/validator": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "ktarila\\ParameterValidatorBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ktarila\\ParameterValidatorBundle\\Tests\\": "tests/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Patrick Kenekayoro",
+            "email": "ktarila@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "symfony/symfony": "^6.2",
+        "phpunit/phpunit": "^10.1"
+    }
+}
