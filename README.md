@@ -39,5 +39,6 @@ class TestClass
     {
         return $this->paramValidationFieldsReader->validate(__METHOD__, func_get_args());
     }
+ }
 
 ```
