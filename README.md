@@ -10,7 +10,7 @@ Work In Progress
 ## Installation
 
 ```
-composer require ktarila/ParameterValidationBundle
+composer require ktarila/parameter-validator-bundle
 
 ```
 
