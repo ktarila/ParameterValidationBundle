@@ -19,18 +19,17 @@ composer require ktarila/parameter-validator-bundle
 ```
 <?php
 
-
-use ktarila\ParameterValidatorBundle\Annotation\ParamValidation;
+use ktarila\ParameterValidatorBundle\Validator\ValidationInterface;
 use Symfony\Component\Validator\Constraints\Range;
-use ktarila\ParameterValidatorBundle\Annotation\ParamValidationFieldsReaderInterface;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
+use ktarila\ParameterValidatorBundle\Attribute\ParamValidation;
 
 class TestClass
 {
     public function __construct(
-        private ParamValidationFieldsReaderInterface $paramValidationFieldsReaderInterface
-    ){}
-
+        private ValidationInterface $validationInterface
+    ) {
+    }
 
     #[ParamValidation(
         position: 0,
@@ -48,7 +47,7 @@ class TestClass
     )]
     public function addTwoNumbers(int $x, int $y)
     {
-        $errors = $this->paramValidationFieldsReaderInterface->validate(
+        $errors = $this->validationInterface->validate(
             __METHOD__,
             func_get_args()
         );
@@ -60,6 +59,5 @@ class TestClass
         throw new ValidationFailedException([$x, $y], $errors);
     }
 }
-
 
 ```

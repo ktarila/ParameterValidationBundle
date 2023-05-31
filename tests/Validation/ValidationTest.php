@@ -1,11 +1,11 @@
 <?php
 
-namespace ktarila\ParameterValidatorBundle\Tests\Annotation;
+namespace ktarila\ParameterValidatorBundle\Tests\Validation;
 
 use ktarila\ParameterValidatorBundle\Tests\TestFunctions\TestFunctions;
 use PHPUnit\Framework\TestCase;
 
-class ParamValidatorReaderTest extends TestCase
+class ValidationTest extends TestCase
 {
     /** @test */
     public function validateFunctionParameters()

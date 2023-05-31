@@ -1,10 +1,10 @@
 <?php
 
-namespace ktarila\ParameterValidatorBundle\Annotation;
+namespace ktarila\ParameterValidatorBundle\Validator;
 
 use Symfony\Component\Validator\ConstraintViolationList;
 
-interface ParamValidationFieldsReaderInterface
+interface ValidationInterface
 {
     public function validate(string $method, array $func_arguments): ConstraintViolationList;
 }

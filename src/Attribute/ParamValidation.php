@@ -1,6 +1,6 @@
 <?php
 
-namespace ktarila\ParameterValidatorBundle\Annotation;
+namespace ktarila\ParameterValidatorBundle\Attribute;
 
 use Attribute;
 

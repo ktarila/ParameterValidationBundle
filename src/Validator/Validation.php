@@ -1,12 +1,13 @@
 <?php
 
-namespace ktarila\ParameterValidatorBundle\Annotation;
+namespace ktarila\ParameterValidatorBundle\Validator;
 
+use ktarila\ParameterValidatorBundle\Attribute\ParamValidation;
 use ReflectionMethod;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class ParamValidationFieldsReader implements ParamValidationFieldsReaderInterface
+class Validation implements ValidationInterface
 {
     public function __construct(private ValidatorInterface $validator)
     {

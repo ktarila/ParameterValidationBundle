@@ -2,8 +2,8 @@
 
 namespace ktarila\ParameterValidatorBundle\Tests\TestFunctions;
 
-use ktarila\ParameterValidatorBundle\Annotation\ParamValidation;
-use ktarila\ParameterValidatorBundle\Annotation\ParamValidationFieldsReader;
+use ktarila\ParameterValidatorBundle\Attribute\ParamValidation;
+use ktarila\ParameterValidatorBundle\Validator\Validation as ValidatorValidation;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Validation;
 
@@ -29,8 +29,8 @@ class TestFunctions
             ->enableAnnotationMapping()
             ->getValidator();
 
-        $paramValidationFieldsReader = new ParamValidationFieldsReader($classMetadata);
+        $validation = new ValidatorValidation($classMetadata);
 
-        return $paramValidationFieldsReader->validate(__METHOD__, func_get_args());
+        return $validation->validate(__METHOD__, func_get_args());
     }
 }

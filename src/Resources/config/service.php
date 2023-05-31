@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-use ktarila\ParameterValidatorBundle\Annotation\ParamValidationFieldsReader;
-use ktarila\ParameterValidatorBundle\Annotation\ParamValidationFieldsReaderInterface;
+use ktarila\ParameterValidatorBundle\Validator\Validation;
+use ktarila\ParameterValidatorBundle\Validator\ValidationInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->services()
-        ->set(ParamValidationFieldsReader::class)
+        ->set(Validation::class)
             ->public()
             ->autowire(true)
 
-        ->alias(ParamValidationFieldsReaderInterface::class, ParamValidationFieldsReader::class)
+        ->alias(ValidationInterface::class, Validation::class)
             ->public()
     ;
 };
