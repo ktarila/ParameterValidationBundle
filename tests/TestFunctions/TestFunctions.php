@@ -3,7 +3,7 @@
 namespace ktarila\ParameterValidatorBundle\Tests\TestFunctions;
 
 use ktarila\ParameterValidatorBundle\Attribute\ParamValidation;
-use ktarila\ParameterValidatorBundle\Validator\Validation as ValidatorValidation;
+use ktarila\ParameterValidatorBundle\Validator\ParameterValidation;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Validation;
 
@@ -29,7 +29,7 @@ class TestFunctions
             ->enableAnnotationMapping()
             ->getValidator();
 
-        $validation = new ValidatorValidation($classMetadata);
+        $validation = new ParameterValidation($classMetadata);
 
         return $validation->validate(__METHOD__, func_get_args());
     }

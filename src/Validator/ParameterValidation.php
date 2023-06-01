@@ -7,7 +7,7 @@ use ReflectionMethod;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class Validation implements ValidationInterface
+class ParameterValidation implements ValidationInterface
 {
     public function __construct(private ValidatorInterface $validator)
     {
