@@ -2,6 +2,9 @@
 composer.lock
 vendor/*
 
+#ignore test var directory
+tests/var/
+
 #Remove vim files
 /**/*.swp
 /tags
