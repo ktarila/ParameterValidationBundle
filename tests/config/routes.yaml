@@ -1,0 +1,5 @@
+controllers:
+    resource:
+        path: ../TestController/
+        namespace: ktarila\ParameterValidatorBundle\Tests\TestController
+    type: attribute

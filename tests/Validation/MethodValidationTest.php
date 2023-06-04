@@ -5,7 +5,7 @@ namespace ktarila\ParameterValidatorBundle\Tests\Validation;
 use ktarila\ParameterValidatorBundle\Tests\TestFunctions\TestFunctions;
 use PHPUnit\Framework\TestCase;
 
-class ValidationTest extends TestCase
+class MethodValidationTest extends TestCase
 {
     /** @test */
     public function validateFunctionParameters()
