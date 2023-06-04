@@ -3,7 +3,8 @@ composer.lock
 vendor/*
 
 #ignore test var directory
-tests/var/
+tests/var/*
+var/*
 
 #Remove vim files
 /**/*.swp
